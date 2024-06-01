@@ -1,3 +1,3 @@
-to run clone 
-npm i 
-npm run dev
+## to run clone 
+## npm i 
+## npm run dev
