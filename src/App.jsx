@@ -15,14 +15,16 @@ const App = () => {
       <Navbar />
       <MarketStatus />
       <div className="p-6">
-        <MarketSectors />
-        <div className="flex justify-between mt-6">
-          <div className="w-2/3 mr-6">
-            <GetStarted />
-            <TodaysStocks />
-          </div>
-          <div className="w-1/3">
-            <News />
+        <div className="max-w-5xl mx-auto">
+          <MarketSectors />
+          <div className="flex justify-between mt-6">
+            <div className="w-2/3 mr-6">
+              <GetStarted />
+              <TodaysStocks />
+            </div>
+            <div className="w-1/3">
+              <News />
+            </div>
           </div>
         </div>
       </div>

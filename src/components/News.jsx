@@ -2,9 +2,9 @@
 import React from 'react';
 
 const dummyNews = [
-  { title: "Feud over KK Modi's Rs 11,000-cr fortune turns ugly", time: "4 hours ago", source: "Business Today" },
+  { title: "Feud over KK Modi's Rs 11,000-cr fortune turns ugly", time: "1 hours ago", source: "Business Today" },
   { title: "IndiGo Flight From Chennai Makes Emergency Landing", time: "1 hour ago", source: "News18" },
-  { title: "Auto Sales In May 2024 Live: M&M SUV Sales Up 31%", time: "1 hour ago", source: "Bloomberg Quint" },
+  { title: "Auto Sales In May 2024 Live: M&M SUV Sales Up 31%", time: "2 hour ago", source: "Bloomberg Quint" },
   { title: "Ask Profit | Cummins India In Focus | NDTV Profit", time: "3 hours ago", source: "Bloomberg Quint" },
   { title: "Nifty In Technical Charts: Ranging June And Rise Thereafter", time: "4 hours ago", source: "Bloomberg Quint" },
 ];
