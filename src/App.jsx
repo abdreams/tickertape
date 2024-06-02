@@ -7,10 +7,19 @@ import GetStarted from './components/GetStarted';
 import News from './components/News';
 import TodaysStocks from './components/TodaysStocks';
 import StockMarquee from './components/StockMarquee';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Portfolio from './components/Portfolio';
+import CreatePortfolio from './components/CreatePortfolio';
 
 const App = () => {
   return (
     <div className="min-h-screen bg-gray-100">
+        <Router>
+            <Routes>
+                <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/createportfolio" element={<CreatePortfolio />} />
+            </Routes>
+        </Router>
       <StockMarquee />
       <Navbar />
       <MarketStatus />
