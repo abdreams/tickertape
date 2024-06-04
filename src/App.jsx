@@ -10,6 +10,7 @@ import StockMarquee from './components/StockMarquee';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Portfolio from './components/Portfolio';
 import CreatePortfolio from './components/CreatePortfolio';
+import MarketSectorsPage from './pages/MarketSectorsPage';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
             <Routes>
                 <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/createportfolio" element={<CreatePortfolio />} />
+                <Route path="/market-sectors" element={<MarketSectorsPage />} />
             </Routes>
         </Router>
       <StockMarquee />
