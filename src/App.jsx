@@ -11,6 +11,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Portfolio from './components/Portfolio';
 import CreatePortfolio from './components/CreatePortfolio';
 import MarketSectorsPage from './pages/MarketSectorsPage';
+import Users from './pages/Users';
+import AdminDashboard from './pages/AdminDashboard';
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
                 <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/createportfolio" element={<CreatePortfolio />} />
                 <Route path="/market-sectors" element={<MarketSectorsPage />} />
+                <Route path="/users" element={<Users />} />
+                <Route path="/admin" element={<AdminDashboard />} />
             </Routes>
         </Router>
       <StockMarquee />
