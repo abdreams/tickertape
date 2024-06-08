@@ -43,8 +43,11 @@ const AdminDashboard = () => {
   return (
     <div className="container mx-auto p-6">
       <div className="flex justify-end">
-        <Link to="/users" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-10 rounded">
+        <Link to="/users" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-10 mr-10 rounded">
           Go to Users
+        </Link>
+        <Link to="/editstocks" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-10 rounded">
+          Edit Stocks
         </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">

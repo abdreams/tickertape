@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTable, useSortBy, useGlobalFilter } from 'react-table';
+import { useNavigate } from 'react-router-dom';
 import EditUserModal from '../components/EditUserModal';
-import { Link } from 'react-router-dom';
 
 const GlobalFilter = ({ globalFilter, setGlobalFilter }) => {
   return (
@@ -18,6 +18,7 @@ const GlobalFilter = ({ globalFilter, setGlobalFilter }) => {
 };
 
 const Users = () => {
+  const navigate = useNavigate();
   const initialData = React.useMemo(
     () => [
       {
@@ -40,7 +41,6 @@ const Users = () => {
         profitLoss: 15000,
         portfolios: 2
       }
-      // Add more users as needed
     ],
     []
   );
@@ -59,6 +59,10 @@ const Users = () => {
     setIsModalOpen(false);
   };
 
+  const handleRowClick = (user) => {
+    navigate(`/user/${user.id}`);
+  };
+
   const columns = React.useMemo(
     () => [
       { Header: 'Name', accessor: 'name' },
@@ -75,8 +79,6 @@ const Users = () => {
             <button onClick={() => handleEdit(row.original)} className="bg-blue-500 text-white px-2 py-1 rounded">
               Edit
             </button>
-            <button className="bg-green-500 text-white px-2 py-1 rounded">View Portfolios</button>
-            <button className="bg-red-500 text-white px-2 py-1 rounded">Delete User</button>
           </div>
         )
       }
@@ -101,12 +103,12 @@ const Users = () => {
   const { globalFilter } = state;
 
   return (
-    <div className="container mx-auto p-6 bg-white rounded-lg shadow">
+    <div className="container mx-auto p-6 bg-white rounded-lg shadow relative">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">Users</h2>
-        <Link to="/admin" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Go to Admin Dashboard
-        </Link>
+        <button onClick={() => navigate('/editstocks')} className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+          Edit Stocks
+        </button>
       </div>
       <GlobalFilter globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
       <div className="overflow-x-auto">
@@ -136,7 +138,11 @@ const Users = () => {
             {rows.map(row => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()} className="hover:bg-gray-100">
+                <tr
+                  {...row.getRowProps()}
+                  className="hover:bg-gray-100 cursor-pointer"
+                  onClick={() => handleRowClick(row.original)}
+                >
                   {row.cells.map(cell => (
                     <td
                       {...cell.getCellProps()}

@@ -13,6 +13,8 @@ import CreatePortfolio from './components/CreatePortfolio';
 import MarketSectorsPage from './pages/MarketSectorsPage';
 import Users from './pages/Users';
 import AdminDashboard from './pages/AdminDashboard';
+import UserDetailPage from './pages/UserDetailPage';
+import EditStockUniverse from './pages/EditStockUniverse';
 
 const App = () => {
   return (
@@ -24,6 +26,8 @@ const App = () => {
                 <Route path="/market-sectors" element={<MarketSectorsPage />} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/user/:userId" element={<UserDetailPage />} />
+                <Route path="/editstocks" element={<EditStockUniverse />} />
             </Routes>
         </Router>
       <StockMarquee />
