@@ -1,99 +1,29 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useTable, usePagination, useGlobalFilter, useSortBy } from 'react-table';
 
-// Dummy data for S&P 500 stocks
-const MOCK_DATA = [
-    {
-      name: 'Apple Inc.',
-      symbol: 'AAPL',
-      sector: 'Technology',
-      openingValue: 150,
-      closingValue: 155
-    },
-    {
-      name: 'Microsoft Corporation',
-      symbol: 'MSFT',
-      sector: 'Technology',
-      openingValue: 200,
-      closingValue: 210
-    },
-    {
-      name: 'Amazon.com, Inc.',
-      symbol: 'AMZN',
-      sector: 'Consumer Discretionary',
-      openingValue: 3100,
-      closingValue: 3200
-    },
-    {
-        name: 'Apple Inc.',
-        symbol: 'AAPL',
-        sector: 'Technology',
-        openingValue: 150,
-        closingValue: 155
-      },
-      {
-        name: 'Microsoft Corporation',
-        symbol: 'MSFT',
-        sector: 'Technology',
-        openingValue: 200,
-        closingValue: 210
-      },
-      {
-        name: 'Amazon.com, Inc.',
-        symbol: 'AMZN',
-        sector: 'Consumer Discretionary',
-        openingValue: 3100,
-        closingValue: 3200
-      },
-      {
-        name: 'Apple Inc.',
-        symbol: 'AAPL',
-        sector: 'Technology',
-        openingValue: 150,
-        closingValue: 155
-      },
-      {
-        name: 'Microsoft Corporation',
-        symbol: 'MSFT',
-        sector: 'Technology',
-        openingValue: 200,
-        closingValue: 210
-      },
-      {
-        name: 'Amazon.com, Inc.',
-        symbol: 'AMZN',
-        sector: 'Consumer Discretionary',
-        openingValue: 3100,
-        closingValue: 3200
-      },
-      {
-        name: 'Apple Inc.',
-        symbol: 'AAPL',
-        sector: 'Technology',
-        openingValue: 150,
-        closingValue: 155
-      },
-      {
-        name: 'Microsoft Corporation',
-        symbol: 'MSFT',
-        sector: 'Technology',
-        openingValue: 200,
-        closingValue: 210
-      },
-      {
-        name: 'Amazon.com, Inc.',
-        symbol: 'AMZN',
-        sector: 'Consumer Discretionary',
-        openingValue: 3100,
-        closingValue: 3200
-      }
-    // Add more stocks as needed
-  ];
+// Define the dummy URLs
+const FETCH_URL = 'https://dummyapi.io/data/api/stocks';  // Replace with actual endpoint
+const UPDATE_URL = 'https://dummyapi.io/data/api/updateStock';  // Replace with actual endpoint
 
 const EditStockUniverse = () => {
-  const [data, setData] = useState(MOCK_DATA);
+  const [data, setData] = useState([]);
   const [editingStock, setEditingStock] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    // Fetch stock data from the backend
+    const fetchStockData = async () => {
+      try {
+        const response = await fetch(FETCH_URL);
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error('Error fetching stock data:', error);
+      }
+    };
+
+    fetchStockData();
+  }, []);
 
   const columns = useMemo(() => [
     { Header: 'Stock Name', accessor: 'name' },
@@ -136,10 +66,26 @@ const EditStockUniverse = () => {
     setIsModalOpen(true);
   };
 
-  const handleSave = (updatedStock) => {
-    const updatedData = data.map(stock => stock.symbol === updatedStock.symbol ? updatedStock : stock);
-    setData(updatedData);
-    setIsModalOpen(false);
+  const handleSave = async (updatedStock) => {
+    try {
+      const response = await fetch(UPDATE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedStock)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update stock');
+      }
+
+      const updatedData = data.map(stock => stock.symbol === updatedStock.symbol ? updatedStock : stock);
+      setData(updatedData);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error('Error updating stock:', error);
+    }
   };
 
   return (
@@ -277,7 +223,5 @@ const EditStockModal = ({ stock, isOpen, onClose, onSave }) => {
     </div>
   );
 };
-
-
 
 export default EditStockUniverse;
