@@ -4,16 +4,32 @@ import { useNavigate } from 'react-router-dom';
 
 // Dummy data for stocks
 const dummyStockData = [
-  { stockname: 'Apple Inc.', stocksymbol: 'AAPL', value: 145.09 },
-  { stockname: 'Microsoft Corp.', stocksymbol: 'MSFT', value: 299.79 },
-  { stockname: 'Amazon.com Inc.', stocksymbol: 'AMZN', value: 3478.05 },
-  { stockname: 'Google LLC', stocksymbol: 'GOOGL', value: 2729.89 },
-  { stockname: 'Facebook Inc.', stocksymbol: 'FB', value: 355.64 },
-];
+    { stockname: 'Apple Inc.', stocksymbol: 'AAPL', value: 145.09 },
+    { stockname: 'Microsoft Corp.', stocksymbol: 'MSFT', value: 299.79 },
+    { stockname: 'Amazon.com Inc.', stocksymbol: 'AMZN', value: 3478.05 },
+    { stockname: 'Google LLC', stocksymbol: 'GOOGL', value: 2729.89 },
+    { stockname: 'Facebook Inc.', stocksymbol: 'FB', value: 355.64 },
+  ];
+
+const FETCH_URL = 'https://dummyapi.io/data/api/stocks';  // Replace with actual endpoint
 
 const StockUniverse = () => {
   const [data, setData] = useState(dummyStockData);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchStockData = async () => {
+      try {
+        const response = await fetch(FETCH_URL);
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error('Error fetching stock data:', error);
+      }
+    };
+
+    fetchStockData();
+  }, []);
 
   const columns = useMemo(() => [
     { Header: 'Stock Name', accessor: 'stockname' },
