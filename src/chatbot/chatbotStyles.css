@@ -1,0 +1,16 @@
+/* src/chatbot/chatbotStyles.css */
+.react-chatbot-kit-chat-message {
+    background-color: white; /* White background for chat messages */
+    color: black; /* Text color for chat messages */
+  }
+  
+  .react-chatbot-kit-chat-bot-message {
+    background-color: #FF0000; /* Red background for bot messages */
+    color: white; /* White text color for bot messages */
+  }
+  
+  .react-chatbot-kit-chat-button {
+    background-color: #FF0000; /* Red background for chat button */
+    color: white; /* White text color for chat button */
+  }
+  

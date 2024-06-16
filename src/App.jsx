@@ -15,9 +15,10 @@ import Users from './pages/Users';
 import AdminDashboard from './pages/AdminDashboard';
 import UserDetailPage from './pages/UserDetailPage';
 import EditStockUniverse from './pages/EditStockUniverse';
-// import ChatbotComponent from './components/ChatbotComponent';
+import ChatbotComponent from './components/ChatbotComponent';
 import StockUniverse from './pages/StockUniverse';
 import StockDetails from './pages/StockDetails';
+import StockComparison from './pages/StockComparision';
 
 const App = () => {
   return (
@@ -31,9 +32,10 @@ const App = () => {
                 <Route path="/admin" element={<AdminDashboard />} />
                 <Route path="/user/:userId" element={<UserDetailPage />} />
                 <Route path="/editstocks" element={<EditStockUniverse />} />
-                {/* <Route path="/chatbot" element={<ChatbotComponent />} /> */}
+                <Route path="/chatbot" element={<ChatbotComponent />} />
                 <Route path="/stocks" element={<StockUniverse />} />
                 <Route path="/stockdetails/:stocksymbol" element={<StockDetails />} />
+                <Route path="/stockcomparision" element={<StockComparison />} />
             </Routes>
         </Router>
       <StockMarquee />
