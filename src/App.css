@@ -40,3 +40,21 @@
 .read-the-docs {
   color: #888;
 }
+
+/* loader spin */
+.spinner-border {
+  border-top-color: transparent;
+  border-right-color: #3498db;
+  border-bottom-color: transparent;
+  border-left-color: #3498db;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}

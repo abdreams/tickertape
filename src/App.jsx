@@ -1,6 +1,8 @@
 // src/App.js
 import React from 'react';
 import Navbar from './components/Navbar';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import MarketStatus from './components/MarketStatus';
 import MarketSectors from './components/MarketSectors';
 import GetStarted from './components/GetStarted';
@@ -19,10 +21,13 @@ import ChatbotComponent from './components/ChatbotComponent';
 import StockUniverse from './pages/StockUniverse';
 import StockDetails from './pages/StockDetails';
 import StockComparison from './pages/StockComparision';
+import RebalancePortfolio from './pages/RebalancePortfolio';
 
 const App = () => {
   return (
     <div className="min-h-screen bg-gray-100">
+              <ToastContainer />
+
         <Router>
             <Routes>
                 <Route path="/portfolio" element={<Portfolio />} />
@@ -36,6 +41,7 @@ const App = () => {
                 <Route path="/stocks" element={<StockUniverse />} />
                 <Route path="/stockdetails/:stocksymbol" element={<StockDetails />} />
                 <Route path="/stockcomparision" element={<StockComparison />} />
+                <Route path="/rebalance" element={<RebalancePortfolio />} />
             </Routes>
         </Router>
       <StockMarquee />

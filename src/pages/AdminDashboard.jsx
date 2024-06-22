@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import { Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, ArcElement, Tooltip, Legend } from 'chart.js';
-
+import { useNavigate } from 'react-router-dom';
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, ArcElement, Tooltip, Legend);
 
@@ -40,6 +40,17 @@ const AdminDashboard = () => {
     ]
   };
 
+
+  // Inside your component
+  const navigate = useNavigate();
+// logic to open new tab
+  const handleRebalanceClick = () => {
+    const newTab = window.open('/rebalance', '_blank');
+    if (!newTab) {
+      toast.error('Please allow pop-ups for this website');
+    }
+  };
+//
   return (
     <div className="container mx-auto p-6">
       <div className="flex justify-end">
@@ -49,6 +60,11 @@ const AdminDashboard = () => {
         <Link to="/editstocks" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-10 rounded">
           Edit Stocks
         </Link>
+       
+        <button onClick={handleRebalanceClick} className="px-4 py-2 bg-blue-500 text-white rounded">
+          Rebalance Portfolio
+        </button>
+
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
         <div className="bg-white p-4 rounded-lg shadow">
