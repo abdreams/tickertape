@@ -101,6 +101,7 @@ const RebalancePortfolio = () => {
                         value={value}
                         onChange={(e) => handleInputChange(e, index)}
                         className="w-full px-2 py-1 border rounded"
+                        onClick={(e) => e.stopPropagation()} // Prevent row click
                     />
                 ),
                 sortType: 'basic',
@@ -109,7 +110,10 @@ const RebalancePortfolio = () => {
                 Header: 'Actions',
                 Cell: ({ row: { index } }) => (
                     <button
-                        onClick={() => handleDelete(index)}
+                        onClick={(e) => {
+                            e.stopPropagation(); // Prevent row click
+                            handleDelete(index);
+                        }}
                         className="px-4 py-2 bg-red-500 text-white rounded"
                     >
                         <FaTrash />
@@ -146,10 +150,11 @@ const RebalancePortfolio = () => {
         setTableGlobalFilter(globalFilter);
     }, [globalFilter, setTableGlobalFilter]);
 
-    const handleRowClick = (row) => {
-        navigate(`/stock-history/${row.original.stockSymbol}`);
+    const handleRowClick = (row, e) => {
+        if (e.target.nodeName !== 'INPUT' && e.target.nodeName !== 'BUTTON') { // Only navigate if target is not input or button
+            navigate(`/stock-history/${row.original.stockSymbol}`);
+        }
     };
-
 
     if (loading) {
         return <Loader />;
@@ -193,7 +198,7 @@ const RebalancePortfolio = () => {
                             <tr
                                 {...row.getRowProps()}
                                 className="cursor-pointer"
-                                onClick={() => handleRowClick(row)}
+                                onClick={(e) => handleRowClick(row, e)}
                             >
                                 {row.cells.map(cell => (
                                     <td
