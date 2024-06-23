@@ -1,4 +1,3 @@
-// src/components/TodaysStocks.js
 import React, { useState } from 'react';
 
 const dummyStocks = [
@@ -16,12 +15,12 @@ const dummyStocks = [
 const filters = {
   gainers: (stocks) => stocks.filter(stock => stock.change > 0),
   losers: (stocks) => stocks.filter(stock => stock.change < 0),
-  mostActive: (stocks) => stocks, // dummy implementation
-  high52W: (stocks) => stocks, // dummy implementation
-  low52W: (stocks) => stocks, // dummy implementation
+  mostActive: (stocks) => stocks,
+  high52W: (stocks) => stocks,
+  low52W: (stocks) => stocks,
 };
 
-const TodaysStocks = () => {
+const TodaysStocks = ({ isDarkMode=true }) => {
   const [selectedFilter, setSelectedFilter] = useState('gainers');
   const [stocks, setStocks] = useState(filters[selectedFilter](dummyStocks));
 
@@ -31,34 +30,34 @@ const TodaysStocks = () => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
+    <div className={`${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} p-6 rounded-lg shadow-md`}>
       <h2 className="text-2xl font-semibold mb-4">Today's stocks</h2>
       <div className="mb-4">
-        <button 
+        <button
           className={`mr-4 ${selectedFilter === 'gainers' ? 'text-green-500' : ''}`}
           onClick={() => handleFilterChange('gainers')}
         >
           Gainers
         </button>
-        <button 
+        <button
           className={`mr-4 ${selectedFilter === 'losers' ? 'text-red-500' : ''}`}
           onClick={() => handleFilterChange('losers')}
         >
           Losers
         </button>
-        <button 
+        <button
           className={`mr-4 ${selectedFilter === 'mostActive' ? 'text-blue-500' : ''}`}
           onClick={() => handleFilterChange('mostActive')}
         >
           Most Active
         </button>
-        <button 
+        <button
           className={`mr-4 ${selectedFilter === 'high52W' ? 'text-blue-500' : ''}`}
           onClick={() => handleFilterChange('high52W')}
         >
           52W High
         </button>
-        <button 
+        <button
           className={`mr-4 ${selectedFilter === 'low52W' ? 'text-blue-500' : ''}`}
           onClick={() => handleFilterChange('low52W')}
         >

@@ -1,4 +1,3 @@
-// src/components/MarketSectors.js
 import React from 'react';
 
 const dummyData = [
@@ -13,16 +12,16 @@ const dummyData = [
   { name: 'NIFTY Pharma', value: 18849.70, change: -0.64, isPositive: false },
 ];
 
-const MarketSectors = () => {
+const MarketSectors = ({ isDarkMode=true }) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-6xl mx-auto">
+    <div className={`${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} p-6 rounded-lg shadow-md w-full max-w-6xl mx-auto`}>
       <div className="flex justify-between items-center mb-4">
         <span className="text-xl font-semibold">Market and sectors</span>
         <a href="#" className="text-blue-500">See All</a>
       </div>
       <div className="grid grid-cols-3 gap-4">
         {dummyData.map((item, index) => (
-          <div key={index} className="flex justify-between items-center p-4 bg-gray-50 rounded">
+          <div key={index} className={`flex justify-between items-center p-4 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded`}>
             <div>
               <span>{item.name}</span>
               <span className="block text-lg font-semibold">{item.value.toFixed(2)}</span>

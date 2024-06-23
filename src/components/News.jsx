@@ -1,4 +1,3 @@
-// src/components/News.js
 import React from 'react';
 
 const dummyNews = [
@@ -9,15 +8,15 @@ const dummyNews = [
   { title: "Nifty In Technical Charts: Ranging June And Rise Thereafter", time: "4 hours ago", source: "Bloomberg Quint" },
 ];
 
-const News = () => {
+const News = ({ isDarkMode=true }) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
+    <div className={`${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} p-6 rounded-lg shadow-md`}>
       <h2 className="text-2xl font-semibold mb-4">Today's news and events</h2>
       <ul>
         {dummyNews.map((news, index) => (
           <li key={index} className="mb-4">
             <a href="#" className="text-blue-500">{news.title}</a>
-            <div className="text-gray-500 text-sm">
+            <div className={`${isDarkMode ? 'text-gray-300' : 'text-gray-500'} text-sm`}>
               {news.time} - {news.source}
             </div>
           </li>

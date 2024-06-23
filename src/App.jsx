@@ -23,6 +23,7 @@ import StockDetails from './pages/StockDetails';
 import StockComparison from './pages/StockComparision';
 import RebalancePortfolio from './pages/RebalancePortfolio';
 
+const isDarkMode=true;
 const App = () => {
   return (
     <div className="min-h-screen bg-gray-100">
@@ -46,21 +47,23 @@ const App = () => {
         </Router>
       <StockMarquee />
       <Navbar />
-      <MarketStatus />
+      <div className={`${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} min-h-screen`}>
+      <MarketStatus isDarkMode={isDarkMode} />
       <div className="p-6">
         <div className="max-w-5xl mx-auto">
-          <MarketSectors />
+          <MarketSectors isDarkMode={isDarkMode} />
           <div className="flex justify-between mt-6">
             <div className="w-2/3 mr-6">
-              <GetStarted />
-              <TodaysStocks />
+              <GetStarted isDarkMode={isDarkMode} />
+              <TodaysStocks isDarkMode={isDarkMode} />
             </div>
             <div className="w-1/3">
-              <News />
+              <News isDarkMode={isDarkMode} />
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
